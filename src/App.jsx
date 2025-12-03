@@ -1,11 +1,11 @@
 import './App.css'
-import FullWidthTextField from './components/FullWidthTextField'
+import PkmnNameInput from './components/PkmnNameInput'
 
 function App() {
 
   return (
     <>
-      <FullWidthTextField />
+      <PkmnNameInput />
     </>
   )
 }

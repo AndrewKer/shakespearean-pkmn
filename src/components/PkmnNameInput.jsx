@@ -1,20 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function FullWidthTextField() {
+export default function PkmnNameInput() {
   const [pkmnName, setPkmnName] = useState("");
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      alert("Running action for " + pkmnName);
+      alert(pkmnName);
     }
   };
 
   return (
     <Box sx={{ width: 500, maxWidth: "100%" }}>
       <TextField
-        id="fullWidth"
+        data-testid="pkmn-name-input"
         fullWidth
         value={pkmnName}
         onKeyDown={handleKeyDown}
