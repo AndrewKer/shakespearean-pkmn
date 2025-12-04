@@ -5,7 +5,7 @@ import TextField from "@mui/material/TextField";
 export default function PkmnNameInput() {
   const [pkmnName, setPkmnName] = useState("");
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: { key: string; }) => {
     if (e.key === "Enter") {
       alert(pkmnName);
     }
