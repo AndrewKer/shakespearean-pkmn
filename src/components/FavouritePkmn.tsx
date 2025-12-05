@@ -20,21 +20,10 @@ export default function FavouritePkmn() {
 
   return (
     <Box sx={{ maxWidth: 480, width: "100%" }}>
-      <Box sx={{ display: "flex", gap: 1, mb: 1 }}>
-        <Button
-          color="inherit"
-          onClick={clearAll}
-          data-testid="favourite-clear-button"
-        >
-          Clear
-        </Button>
-      </Box>
-
       <Divider />
-
       <Box sx={{ mt: 1 }}>
-        <Typography variant="subtitle1" sx={{ mb: 1 }}>
-          Favourite Pokemon
+        <Typography variant="h5" sx={{ mb: 1 }}>
+          Favourite Pokemon List
         </Typography>
 
         {isLoading ? (
@@ -68,6 +57,13 @@ export default function FavouritePkmn() {
                 <ListItemText primary={pkmn.name} />
               </ListItem>
             ))}
+            <Button
+              color="inherit"
+              onClick={clearAll}
+              data-testid="favourite-clear-button"
+            >
+              Clear
+            </Button>
           </List>
         )}
       </Box>
