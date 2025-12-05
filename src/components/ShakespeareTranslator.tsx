@@ -6,7 +6,10 @@ interface ShakespeareTranslatorProps {
   onTranslated?: (translated: string) => void;
 }
 
-function ShakespeareTranslator({ text, onTranslated }: ShakespeareTranslatorProps) {
+function ShakespeareTranslator({
+  text,
+  onTranslated,
+}: ShakespeareTranslatorProps) {
   const [translatedText, setTranslatedText] = useState("");
 
   const mutation = useMutation({

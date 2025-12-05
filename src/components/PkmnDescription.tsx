@@ -51,7 +51,8 @@ export default function PkmnDescription({ name }: { name?: string }) {
     ? firstEnglishEntry.flavor_text.replace(/\f/g, " ")
     : "No english description available";
 
-  const spriteUrl = spriteData?.sprites?.front_default || "src/assets/react.svg";
+  const spriteUrl =
+    spriteData?.sprites?.front_default || "src/assets/react.svg";
 
   const handleAddFavourite = () => {
     addFavourite({

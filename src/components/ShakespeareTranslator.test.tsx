@@ -183,5 +183,4 @@ describe("ShakespeareTranslator", () => {
       expect(fetchSpy).toHaveBeenCalledTimes(2);
     });
   });
-
 });

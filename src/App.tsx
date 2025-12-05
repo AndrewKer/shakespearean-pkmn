@@ -18,12 +18,12 @@ const queryClient = new QueryClient({
 
 // Create context
 export const FavContext = createContext<{
-      favourites: PkmnFavourite[];
-      setFavourites: (favourites: PkmnFavourite[]) => void;
-    }>({
-      favourites: [],
-      setFavourites: () => {},
-    });
+  favourites: PkmnFavourite[];
+  setFavourites: (favourites: PkmnFavourite[]) => void;
+}>({
+  favourites: [],
+  setFavourites: () => {},
+});
 
 function App() {
   const [favourites, setFavourites] = useState<PkmnFavourite[]>([]);

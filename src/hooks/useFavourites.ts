@@ -11,7 +11,7 @@ export interface PkmnFavourite {
 const STORAGE_KEY = "favourite-pokemons";
 
 export function useFavourites() {
-  const {favourites, setFavourites} = useContext(FavContext);
+  const { favourites, setFavourites } = useContext(FavContext);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load from localStorage on mount
@@ -40,16 +40,20 @@ export function useFavourites() {
   }, [favourites, isLoading]);
 
   const addFavourite = (pkmn: PkmnFavourite) => {
-    const exists = favourites.some((fav) => fav.name.toLowerCase() === pkmn.name.toLowerCase());
+    const exists = favourites.some(
+      (fav) => fav.name.toLowerCase() === pkmn.name.toLowerCase()
+    );
     if (!exists) {
       setFavourites([pkmn, ...favourites]);
     }
   };
 
   const removeFavourite = (name: string) => {
-    setFavourites(favourites.filter((fav) => fav.name.toLowerCase() !== name.toLowerCase()));
+    setFavourites(
+      favourites.filter((fav) => fav.name.toLowerCase() !== name.toLowerCase())
+    );
   };
-  
+
   const clearAll = () => {
     setFavourites([]);
   };

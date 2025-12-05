@@ -22,7 +22,6 @@ vi.mock("./ShakespeareTranslator", () => {
   };
 });
 
-
 describe("PkmnDescription", () => {
   let queryClient: QueryClient;
 
@@ -48,9 +47,7 @@ describe("PkmnDescription", () => {
   });
 
   it("returns null when name prop is an empty string", () => {
-    const { container } = renderWithQueryClient(
-      <PkmnDescription name="" />
-    );
+    const { container } = renderWithQueryClient(<PkmnDescription name="" />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -60,7 +57,10 @@ describe("PkmnDescription", () => {
   });
 
   it("displays error message when fetch fails", async () => {
-    vi.stubGlobal("fetch", vi.fn(() => Promise.reject(new Error("Network error"))));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() => Promise.reject(new Error("Network error")))
+    );
 
     renderWithQueryClient(<PkmnDescription name="invalid-pokemon" />);
 
@@ -80,12 +80,15 @@ describe("PkmnDescription", () => {
       ],
     };
 
-    vi.stubGlobal("fetch", vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockData),
-      } as Response)
-    ));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockData),
+        } as Response)
+      )
+    );
 
     renderWithQueryClient(<PkmnDescription name="pikachu" />);
 
@@ -105,12 +108,15 @@ describe("PkmnDescription", () => {
       ],
     };
 
-    vi.stubGlobal("fetch", vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockData),
-      } as Response)
-    ));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockData),
+        } as Response)
+      )
+    );
 
     renderWithQueryClient(<PkmnDescription name="charizard" />);
 
@@ -131,17 +137,22 @@ describe("PkmnDescription", () => {
       ],
     };
 
-    vi.stubGlobal("fetch", vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockData),
-      } as Response)
-    ));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockData),
+        } as Response)
+      )
+    );
 
     renderWithQueryClient(<PkmnDescription name="bulbasaur" />);
 
     await waitFor(() => {
-      expect(screen.getByText(/Translated: Grass seed pokemon/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Translated: Grass seed pokemon/)
+      ).toBeInTheDocument();
     });
   });
 
@@ -156,17 +167,22 @@ describe("PkmnDescription", () => {
       ],
     };
 
-    vi.stubGlobal("fetch", vi.fn(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockData),
-      } as Response)
-    ));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(() =>
+        Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockData),
+        } as Response)
+      )
+    );
 
     renderWithQueryClient(<PkmnDescription name="mewtwo" />);
 
     await waitFor(() => {
-      expect(screen.getByText(/Translated: No english description available/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Translated: No english description available/)
+      ).toBeInTheDocument();
     });
   });
 });
