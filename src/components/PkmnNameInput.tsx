@@ -21,7 +21,7 @@ export default function PkmnNameInput() {
         value={pkmnName}
         onKeyDown={handleKeyDown}
         onChange={(e) => {
-          setPkmnName(e.target.value);
+          setPkmnName(e.target.value.trim());
           setShowResult(false);
         }}
       />

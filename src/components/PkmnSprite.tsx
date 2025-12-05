@@ -21,7 +21,7 @@ export default function PkmnSprite({ name }: { name?: string }) {
     <CardMedia
       component="img"
       sx={{ width: 151 }}
-      image={data ? data?.sprites.front_default : "src/assets/react.svg"}
+      image={data?.sprites.front_default || "src/assets/react.svg"}
       alt="pkmn sprite"
     />
   );

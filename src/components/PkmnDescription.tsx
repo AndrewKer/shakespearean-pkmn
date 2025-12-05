@@ -4,18 +4,20 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { useQuery } from "@tanstack/react-query";
 import PkmnSprite from "./PkmnSprite";
+import ShakespeareTranslator from "./ShakespeareTranslator";
 
 export default function PkmnDescription({ name }: { name?: string }) {
   if (!name) return null;
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['description', name],
+    queryKey: ["description", name],
     queryFn: async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
-      if (!response.ok) throw new Error('Failed to fetch pokemon data');
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${name}`
+      );
+      if (!response.ok) throw new Error("Failed to fetch pokemon data");
       return response.json();
     },
-      
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -25,21 +27,19 @@ export default function PkmnDescription({ name }: { name?: string }) {
     (entry: any) => entry.language.name === "en"
   );
 
+  const descriptionText = firstEnglishEntry
+    ? firstEnglishEntry.flavor_text.replace(/\f/g, " ")
+    : "No english description available";
+
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card sx={{ display: "flex" }} data-testid="pkmn-description">
       <PkmnSprite name={data?.name} />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">
             {data?.name.toUpperCase()}
           </Typography>
-          <Typography
-            variant="subtitle1"
-            component="div"
-            sx={{ color: "text.secondary" }}
-          >
-            {firstEnglishEntry ? firstEnglishEntry.flavor_text.replace(/\f/g, ' ') : 'No english description available'}
-          </Typography>
+          <ShakespeareTranslator text={descriptionText} />
         </CardContent>
       </Box>
     </Card>
