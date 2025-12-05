@@ -1,9 +1,11 @@
+import { createContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
 import PkmnNameInput from "./components/PkmnNameInput";
-import PkmnDescription from "./components/PkmnDescription";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import FavouritePkmn from "./components/FavouritePkmn";
+import { PkmnFavourite } from "./hooks/useFavourites";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,14 +16,27 @@ const queryClient = new QueryClient({
   },
 });
 
+// Create context
+export const FavContext = createContext<{
+      favourites: PkmnFavourite[];
+      setFavourites: (favourites: PkmnFavourite[]) => void;
+    }>({
+      favourites: [],
+      setFavourites: () => {},
+    });
+
 function App() {
+  const [favourites, setFavourites] = useState<PkmnFavourite[]>([]);
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <Box sx={{ width: "100%" }}>
           <Stack spacing={5}>
-            <PkmnNameInput />
-            <PkmnDescription />
+            <FavContext.Provider value={{ favourites, setFavourites }}>
+              <PkmnNameInput />
+              <FavouritePkmn />
+            </FavContext.Provider>
           </Stack>
         </Box>
       </QueryClientProvider>
