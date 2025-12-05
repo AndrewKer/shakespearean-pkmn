@@ -3,9 +3,10 @@ import { useMutation } from "@tanstack/react-query";
 
 interface ShakespeareTranslatorProps {
   text: string;
+  onTranslated?: (translated: string) => void;
 }
 
-function ShakespeareTranslator({ text }: ShakespeareTranslatorProps) {
+function ShakespeareTranslator({ text, onTranslated }: ShakespeareTranslatorProps) {
   const [translatedText, setTranslatedText] = useState("");
 
   const mutation = useMutation({
@@ -25,7 +26,9 @@ function ShakespeareTranslator({ text }: ShakespeareTranslatorProps) {
       return response.json();
     },
     onSuccess: (data) => {
-      setTranslatedText(data.contents.translated);
+      const translated = data.contents.translated;
+      setTranslatedText(translated);
+      onTranslated?.(translated);
     },
   });
 
