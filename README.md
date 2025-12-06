@@ -16,6 +16,9 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - npm install @mui/material @emotion/react @emotion/styled
 - npm install @mui/icons-material
 
+### TanStack Query
+- npm i @tanstack/react-query 
+
 
 ## Running locally
 
@@ -26,3 +29,16 @@ This template provides a minimal setup to get React working in Vite with HMR and
 ### Running Vitest Unit Tests
 - npm run test
 
+## Deploying (Github Pages)
+
+Install github pages package
+- npm install --save-dev gh-pages
+
+Added repo name inside vite.config
+
+Run the following commands to deploy:
+- npm run predeploy
+- npm run deploy
+
+Once deployed, application is accessible through: 
+https://andrewker.github.io/shakespearean-pkmn/
